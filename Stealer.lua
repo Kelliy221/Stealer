@@ -185,7 +185,16 @@ stealButton.MouseButton1Click:Connect(function()
     if not plr then return end
 
     local jeepney = Workspace.Jeepnies:FindFirstChild(plr.Name)
-    if not jeepney then return end
+    
+    if not jeepney then
+        playNotifySound()
+        game.StarterGui:SetCore("SendNotification", {
+            Title = "Notice",
+            Text = "Hindi naka spawn Jeep",
+            Duration = 5
+        })
+        return
+    end
 
     local stickers = jeepney:FindFirstChild("Body")
         and jeepney.Body.Structure
@@ -217,7 +226,7 @@ stealButton.MouseButton1Click:Connect(function()
         game.StarterGui:SetCore("SendNotification", {
             Title = "Notice",
             Text = "Walang Sticker",
-            Duration = 3
+            Duration = 5
         })
         return
     end
